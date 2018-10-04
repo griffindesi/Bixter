@@ -6,8 +6,12 @@
  */
  class DataBase {
 
-  private static $_instance= null;
-  private $_pdo , $_query , $_error = false , $_resault=0 , $_lastInsertID=null;
+  private static $_instance= null /* this will be the connection handler */;
+  private $_pdo/* this will be the connection object handler */
+  , $_query /* this will be the query handler */
+  , $_error = false /* this will be the errors handler */
+  , $_resault=0 /* this will be the the resault handler */
+  , $_lastInsertID=null /* this will be the last insert id handler */;
 
   private function __construct()
   {
@@ -22,6 +26,7 @@
 
   public static function getInstance()
   {
+    // this function will valditon on the database connection
     if (!isset(self::$_instance)) {
       self::$_instance = new DataBase();
           }
@@ -30,6 +35,7 @@
 
   public function query($sql,$params=[])
   {
+    // this function will make query and handler $sql query $params have params
     $this->error=false;
     if ($this->_query = $this->_pdo->prepare($sql)) {
       $x=1;
@@ -76,6 +82,26 @@
   }
   public function error() {
     return $this->_error;
+  }
+  public function SelectAll($table)
+  {
+    // this function will make query and handler $sql query $params have params
+    $this->error=false;
+    $sql="SELECT * FROM {$table}";
+    if ($this->_query = $this->_pdo->prepare($sql)) {
+
+    }
+    if ($this->_query->execute()) {
+    $this->_resault = $this->_query->fetchAll(PDO::FETCH_ASSOC);
+    return $this->_resault;
+     //$this->_count = $this->_query->rowCount();
+
+   }else {
+     $this->$_error=true;
+
+   }
+     return $this;
+
   }
 
 

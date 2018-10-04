@@ -7,3 +7,9 @@ function dnd($data)
   echo "</pre>";
   die();
 }
+function foreach2($data){
+foreach ($data as  $value) {
+  echo $value;
+}
+
+}
