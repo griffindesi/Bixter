@@ -4,7 +4,7 @@
 /**
  *
  */
-class DataBase {
+ class DataBase {
 
   private static $_instance= null;
   private $_pdo , $_query , $_error = false , $_resault=0 , $_lastInsertID=null;
@@ -15,6 +15,7 @@ class DataBase {
       $this->_pdo = new PDO('mysql:host='.DBHOST.';dbname='.DBNAME.'',DBUSER,DBPASSWORD);
     } catch (PDOException $e) {
       die($e->getMessage());
+
     }
 
   }
@@ -49,5 +50,33 @@ class DataBase {
    }
      return $this;
   }
+  public function insert ($table , $fields = [])
+  {
+
+    $fieldString = '';
+    $valueString = '';
+    $values = [];
+
+
+    foreach ($fields as $field => $value) {
+      $fieldString .= '`' . $field . '`,';
+      $valueString .= '?,';
+      $values [] = $value;
+    }
+
+    $fieldString = rtrim($fieldString,',');
+    $valueString = rtrim($valueString,',');
+    $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
+
+    if (!$this->query($sql , $values)->error()) {
+      return true;
+    }
+     return false;
+
+  }
+  public function error() {
+    return $this->_error;
+  }
+
 
 }
