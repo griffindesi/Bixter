@@ -32,7 +32,7 @@ define('404PAGE', ROOT.DS.'App'.DS.'views'.DS.'404.php'); // @Param 404PAGE This
 
 
 define('DBUSER', 'root'); // DBUSER This Your Database User Name Default is Root
-define('DBPASSWORD', ''); // DBPASSWORD This Your Database Password Default is none''
-define('DBSERVER', 'Localhost'); // DBSERVER This Your Database Server Default is Localhost
+define('DBPASSWORD', '540963za'); // DBPASSWORD This Your Database Password Default is none''
+define('DBHOST', 'localhost'); // DBSERVER This Your Database Server Default is Localhost
 define('DBPORT', '8080'); // DBPORT This Your Database Server Port Default is 8080
-define('DBNAME', ''); // DBNAME This Your Database Name
+define('DBNAME', 'tesetturpazari'); // DBNAME This Your Database Name
