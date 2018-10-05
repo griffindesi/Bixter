@@ -92,18 +92,19 @@
 
     }
     if ($this->_query->execute()) {
-    $this->_resault = $this->_query->fetchAll(PDO::FETCH_ASSOC);
-    return $this->_resault;
+    $this->_resault = $this->_query->fetchAll(PDO::FETCH_OBJ);
+    //return $this->_resault;
      //$this->_count = $this->_query->rowCount();
-
+     $this->_count = $this->_query->rowCount();
+     $this->_lastInsertID = $this->_pdo->lastInsertId();
    }else {
-     $this->$_error=true;
+     $this->_error=true;
 
    }
      return $this;
 
   }
-  
+
   public function Update ( $table , $id , $fields = [])  {
 
         $fieldString = '';
@@ -138,9 +139,37 @@
 
   }
 
-  public function Delete () {
+  public  function Delete ($table,$id) {
+
+      // this fucnction will have 2 paramater id & table
+
+      $sql = "Delete From  {$table} WHERE id={$id}";
+
+      // dnd($sql);
+
+      if (!$this->query($sql)->error()) {
+        return true;
+      }
+       return False;
 
 
+  }
+  public function resaults()
+  {
+    return $this->_resault;
+
+  }
+
+  public function first()
+  {
+    return $this->_resault[0];
+
+  }
+  public function count()
+  {
+    (!empty($this->_count))?$this->_count:[];
+
+    //return $this->_count;
   }
 
 

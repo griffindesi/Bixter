@@ -15,6 +15,7 @@ public function indexAction()
 {
   $DB= DataBase::getInstance();
   $table="users ";
+  $sql="SELECT * FROM users";
   $fields=[
         'id'=>'',
         'fname'=>'Hussain Mardini',
@@ -22,8 +23,10 @@ public function indexAction()
         'mail'=>'aboodma@gmail.com'
       ];
   // /$newUser=$DB->insert($table,$fields);
+  //$KargoQ=$DB->query($sql);
   $KargoQ=$DB->SelectAll($table);
-  dnd($KargoQ);
+  $users=['count'=>$KargoQ->count(),'resaults'=>$KargoQ->resaults(),'error'=>$KargoQ->error()];
+  print_r($users);
 
   $this->view->render('home/index');
 }
@@ -40,6 +43,14 @@ public function  newAction() {
   $newUser=$DB->insert($table,$fields);
 
   dnd($newUser);
+}
+
+public function deleteAction()
+{
+
+  $DB= DataBase::getInstance();
+  $deleteUser=$DB->Delete('users',2);
+  dnd($deleteUser);
 }
 
 }
