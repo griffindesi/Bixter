@@ -1,14 +1,13 @@
 <?php
-/*
-* This Class IS Model Class
-*
-*/
-NameSpace Model;
 
-class Model {
+/**
+ * 
+ */
+class Model extends Appliction
+{
 
-  function __construct()
+  function __construct(argument)
   {
-  
+    // code...
   }
 }
