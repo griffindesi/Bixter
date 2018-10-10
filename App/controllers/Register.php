@@ -14,8 +14,6 @@ class Register extends Controller
 
 public function loginAction()
 {
-  
-  die();
   $this->view->render('register/login');
 }
 
