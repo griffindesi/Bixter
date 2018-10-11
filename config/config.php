@@ -31,3 +31,8 @@ define('DBPASSWORD', ''); // DBPASSWORD This Your Database Password Default is n
 define('DBHOST', 'localhost'); // DBSERVER This Your Database Server Default is Localhost
 define('DBPORT', '8080'); // DBPORT This Your Database Server Port Default is 8080
 define('DBNAME', 'bixter'); // DBNAME This Your Database Name
+
+/*Cookies And Sessions Params */
+define('CURRENT_USER_SESSION_NAME', 'KSDMksadmsadPdsafigrmmnnvor');
+define('REMEMBER_ME_COOKIE_NAME', 'koJusadnJuhGgTRiooINbvAR21202sdfe564');
+define('REMEMBER_COOKIE_EXPIRY', 604800);

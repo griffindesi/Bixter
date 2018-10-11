@@ -16,15 +16,16 @@ class Model {
   $this->_db=DataBase::getInstance();
   $this->_table=$table;
   $this->_setTableColumns();
-  $this->$_modelName = str_replace(' ', '', ucwords(str_replace('_',' ',$this->_table)));
+  $this->_modelName = str_replace(' ', '', ucwords(str_replace('_',' ',$this->_table)));
 
   }
   protected function _setTableColumns()
   {
-    $colunms = $this->get_columns();
-    foreach ($colunms as $colunm) {
-      $this->_colunmNames[] = $colunm->Field;
-      $this->{colunmName} = null;
+    $columns = $this->get_columns();
+    foreach ($columns as $column) {
+      $columnName= $column->Field;
+      $this->_columnNames[] = $column->Field;
+      $this->{$columnName} = null;
     }
   }
 
@@ -50,7 +51,7 @@ class Model {
 
     $resultQuery = $this->_db->findFirst($this->_table,$params);#
     $result =new $this->_modelName($this->_table);
-    $result->populateObjData($resultsQuery);
+    $result->populateObjData($resultQuery);
     return $result;
 
   }
@@ -62,14 +63,14 @@ class Model {
 
   public function insert($fields)
   {
-    if(empty{$fields})return false;
+    if(empty($fields))return false;
     return $this->_db->insert( $this->_table , $fields);
   }
 
 
   public function update($id , $fields)
   {
-    if(empty{$fields} || $id == '')return false;
+    if(empty($fields) || $id == '')return false;
     return $this->_db->Update( $this->_table , $id , $fields);
   }
 
@@ -93,8 +94,8 @@ class Model {
   public function save()
   {
     $fields = [];
-    foreach ($this->_colunmNames as $colunm) {
-      $fields[$colunm] = $this->$colunm;
+    foreach ($this->_columnNames as $column) {
+      $fields[$column] = $this->$column;
     }
     //determine whether to update or inseet
     if(property_exists( $this , 'id')&& $this->id != ''){
@@ -107,8 +108,8 @@ class Model {
   public function data()
   {
     $data = new stdClass();
-    foreach ($this->colunmNames as $colunm) {
-      $data->colunm = $this->column;
+    foreach ($this->columnNames as $column) {
+      $data->column = $this->column;
     }
     return $data;
   }
@@ -118,7 +119,7 @@ class Model {
   {
     if (!empty($params)) {
       foreach ($params as $key => $value) {
-        if (in_array($key,$this->_colunmNames)) {
+        if (in_array($key,$this->_columnNames)) {
           $this->$key = sanitize($value);
         }
       }

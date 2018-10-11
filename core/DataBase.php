@@ -190,7 +190,7 @@ class DataBase {
     }
 
     public function first() {
-        return $this->_resault[0];
+        return (!empty($this->_resault)) ? $this->_resault[0] : [];
 
     }
     protected function _read($table,$params=[])
@@ -200,9 +200,9 @@ class DataBase {
       $order='';
       $limit='';
       //$conditionString
-      if (isset($params['$conditions'])) {
-        if (is_array($params['$conditions'])) {
-          foreach ($params['$conditions'] as $condition) {
+      if (isset($params['conditions'])) {
+        if (is_array($params['conditions'])) {
+          foreach ($params['conditions'] as $condition) {
             $conditionString .=' ' . $condition . ' AND';
           }
           $conditionString = trim($conditionString);
@@ -212,7 +212,7 @@ class DataBase {
           $conditionString = $params['conditions'];
         }
         if ($conditionString != '') {
-          $conditionString = ' WHERE ' . $conditionString;
+          $conditionString = ' Where ' . $conditionString;
         }
       }
       //binde
@@ -248,16 +248,16 @@ class DataBase {
       return false;
     }
     public function count() {
-        (!empty($this->_count)) ? $this->_count : [];
+      //  (!empty($this->_count)) ? $this->_count : [];
 
-        //return $this->_count;
+        return $this->_count;
 
     }
     public function lastInsertId()
     {
       return $this->_lastInsertID;
     }
-    public function get_colunms($table)
+    public function get_columns($table)
     {
       return $this->query("SHOW COLUMNS FROM {$table}")->resaults();
     }
