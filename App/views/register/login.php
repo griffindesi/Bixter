@@ -5,8 +5,9 @@
 
 <?php $this->start('body') ?>
 
-<div class="col-md-6. col-md-offset-3 well">
+<div class="col-md-6 col-md-offset-3 well">
 <form class="form" action="<?=PROOT?>register/login" method="post">
+  <div class="bg-danger"><?=$this->displayErrors?></div>
   <h3 class="text-center">Log in</h3>
   <div class="form-group">
   <label for="username">Username</label>
@@ -23,7 +24,7 @@
     <input type="submit" name="" class="btn btn-large btn-primary" value="Login">
   </div>
   <div class="text-right">
-    <a href="<?=PROOT?>register/register" class="text-primary"> Register</a>
+    <a href="<?=PROOT?>register/register" class="btn btn-primary"> Register</a>
   </div>
 </form>
 </div>

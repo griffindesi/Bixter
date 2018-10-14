@@ -35,4 +35,4 @@ define('DBNAME', 'bixter'); // DBNAME This Your Database Name
 /*Cookies And Sessions Params */
 define('CURRENT_USER_SESSION_NAME', 'KSDMksadmsadPdsafigrmmnnvor');
 define('REMEMBER_ME_COOKIE_NAME', 'koJusadnJuhGgTRiooINbvAR21202sdfe564');
-define('REMEMBER_COOKIE_EXPIRY', 604800);
+define('REMEMBER_ME_COOKIE_EXPIRY', 604800);

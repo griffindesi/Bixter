@@ -13,7 +13,11 @@ class Home extends Controller
 
 public function indexAction()
 {
-  dnd($_SESSION);
-  $this->view->render('home/index');
+
+    
+
+     $this->view->render('home/index');
+
+
 }
 }
